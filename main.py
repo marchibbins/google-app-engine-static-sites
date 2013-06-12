@@ -60,10 +60,32 @@ class RequestHandler(webapp2.RequestHandler):
         # Render response, easy peasy
         self.response.write(template.render())
 
+
+def handle_404(request, response, exception):
+    """
+    Simple handler for 404 exceptions.
+    """
+    template = jinja_env.get_template('404.html')
+    response.write(template.render())
+    response.set_status(404)
+
+
+def handle_500(request, response, exception):
+    """
+    Simple handler for 500 exceptions.
+    """
+    template = jinja_env.get_template('500.html')
+    response.write(template.render())
+    response.set_status(500)
+
 jinja_env = jinja2.Environment(
+    loader=jinja2.FileSystemLoader(os.path.join(os.path.dirname(__file__), 'templates')),
     extensions=['jinja2.ext.autoescape']
 )
 
 application = webapp2.WSGIApplication([
     ('(.*)', RequestHandler),
 ], debug=DEBUG)
+
+application.error_handlers[404] = handle_404
+application.error_handlers[500] = handle_500
