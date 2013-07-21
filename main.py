@@ -83,6 +83,8 @@ jinja_env = jinja2.Environment(
     extensions=['jinja2.ext.autoescape']
 )
 
+jinja_env.cache = None
+
 application = webapp2.WSGIApplication([
     ('(.*)', RequestHandler),
 ], debug=DEBUG)
