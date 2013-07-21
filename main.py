@@ -2,14 +2,14 @@ import jinja2
 import os
 import webapp2
 
-# Application configuration
+# Application config
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__)))
 SITES_CONFIG = {
     'localhost': 'default',
     'example.com': 'example',
 }
 
-# Debug based on local or production environment
+# Debug check on local or production environment
 DEBUG = os.environ['SERVER_SOFTWARE'].startswith('Dev')
 
 
