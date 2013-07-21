@@ -6,6 +6,7 @@ import webapp2
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__)))
 SITES_CONFIG = {
     'localhost': 'default',
+    'example.com': 'example',
 }
 
 # Debug based on local or production environment
